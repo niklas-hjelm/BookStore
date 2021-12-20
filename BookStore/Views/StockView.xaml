@@ -24,8 +24,21 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Row="1" Grid.Column="1" />
-            <ListBox Grid.Row="1" Grid.Column="3" />
+            <ListView Grid.Row="1" Grid.Column="1" 
+                     ItemsSource="{Binding Stores, UpdateSourceTrigger=PropertyChanged}" 
+                     DisplayMemberPath="Name"
+                     SelectedItem="{Binding SelectedStore}"/>
+            <ListView Grid.Row="1" Grid.Column="3" 
+                      ItemsSource="{Binding StoreBooks, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Title}" Header="Title"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Isbn}" Header="ISBN"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Quantity}" Header="Quantity"/>
+                    </GridView>
+                </ListView.View>
+
+                </ListView>
         </Grid>
     </Border>
 </UserControl>

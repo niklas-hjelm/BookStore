@@ -24,8 +24,25 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="20" />
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Row="1" Grid.Column="1" />
-            <ListBox Grid.Row="1" Grid.Column="3" />
+            <ListView Grid.Row="1" Grid.Column="1" 
+                      ItemsSource="{Binding Authors, UpdateSourceTrigger=PropertyChanged}" 
+                      SelectedItem="{Binding SelectedAuthor, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Firstname}" Header="First name"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Lastname}" Header="Last name"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView Grid.Row="1" Grid.Column="3" 
+                      ItemsSource="{Binding SelectedAuthorBooks, UpdateSourceTrigger=PropertyChanged}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Title}" Header="First name"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Language}" Header="Language"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
     </Border>
 </UserControl>
